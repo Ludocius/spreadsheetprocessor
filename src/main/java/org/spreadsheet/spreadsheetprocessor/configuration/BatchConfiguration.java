@@ -2,7 +2,6 @@ package org.spreadsheet.spreadsheetprocessor.configuration;
 
 import org.spreadsheet.spreadsheetprocessor.domain.Employee;
 import org.spreadsheet.spreadsheetprocessor.processor.EmployeeItemProcessor;
-import org.spreadsheet.spreadsheetprocessor.util.EmployeeRowMapper;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
@@ -19,7 +18,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
@@ -86,13 +84,4 @@ public class BatchConfiguration {
                 .build();
     }
 
-    @Bean
-    public EmployeeItemProcessor processor() {
-        return new EmployeeItemProcessor();
-    }
-
-    @Bean
-    public RowMapper<Employee> employeeRowMapper() {
-        return new EmployeeRowMapper();
-    }
 }

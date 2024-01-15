@@ -23,16 +23,20 @@ public class ProcesadorPlanillas {
 
     public Long totalAmountToPay(){
         logger.info("INFORMATION GRABBED {} ", SELECT_EMPLOYEE_QUERY);
-        return getValidationsAlign(procesadorMiembrosPlanillas.query(SELECT_EMPLOYEE_QUERY, rowMapper));
+        return calculateTotalAmount(procesadorMiembrosPlanillas.query(SELECT_EMPLOYEE_QUERY, rowMapper));
     }
 
-    private long getValidationsAlign(List<Employee> employees) {
+    private boolean isValidEmployee(Employee employee) {
+        return employee.isActive()
+                && !employee.getName().isEmpty()
+                && employee.getId() != 0
+                && employee.getMonthlyPayment().compareTo(BigDecimal.ZERO) >= 0;
+    }
+
+    private long calculateTotalAmount(List<Employee> employees) {
         return employees.stream()
-                .filter(Employee::isActive)
-                .filter(employee -> employee.getId() != 0)
-                .map(Employee::getMonthlyPayment)
-                .filter(monthlyPayment -> monthlyPayment.compareTo(BigDecimal.ZERO) >= 0)
-                .mapToLong(BigDecimal::longValue)
+                .filter(this::isValidEmployee)
+                .mapToLong(payment -> payment.getMonthlyPayment().longValue())
                 .sum();
     }
 }
