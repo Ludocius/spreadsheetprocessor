@@ -24,8 +24,7 @@ to process spreadsheet with the following validations
 3. Name is Empty.
 4. Inactive employee.
 
-![scenarios validation.gif](..%2F..%2FDownloads%2Fscenarios%20validation.gif)
-
+![scenarios validation.gif](src%2Fmain%2Fresources%2Fvideos%2Fscenarios%20validation.gif)
 
 
 ✨**SOLUTION PROPOSAL**
@@ -62,4 +61,5 @@ the total amount of payments.
 
 To run this project configure your local jdk and gradle, then play the SpreadsheetprocessorApplication.class
 to boot up the application and look out the logs for the information.
-![running up the application.gif](..%2F..%2FDownloads%2Frunning%20up%20the%20application.gif)
+
+![running up the application.gif](src%2Fmain%2Fresources%2Fvideos%2Frunning%20up%20the%20application.gif)
