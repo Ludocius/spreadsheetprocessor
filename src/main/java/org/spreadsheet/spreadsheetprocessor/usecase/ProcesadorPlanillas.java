@@ -9,8 +9,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 @Component
@@ -26,15 +24,6 @@ public class ProcesadorPlanillas {
     public Long totalAmountToPay(){
         logger.info("INFORMATION GRABBED {} ", SELECT_EMPLOYEE_QUERY);
         return getValidationsAlign(procesadorMiembrosPlanillas.query(SELECT_EMPLOYEE_QUERY, rowMapper));
-    }
-
-    public Employee mapRowToEmployee(ResultSet rs) throws SQLException {
-        return Employee.builder()
-                .id(Long.parseLong(rs.getString(1)))
-                .name(rs.getString(2))
-                .monthlyPayment(new BigDecimal(rs.getString(3)))
-                .active(Boolean.parseBoolean(rs.getString(4)))
-                .build();
     }
 
     private long getValidationsAlign(List<Employee> employees) {
